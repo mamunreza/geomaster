@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node -e ' *)",
+      "Bash(rm run_test.mjs screenshot_*.png)",
+      "Bash(npm uninstall *)"
+    ]
+  }
+}
