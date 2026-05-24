@@ -53,14 +53,17 @@
   },
   "auth": {
     "loginTitle": "Welcome Back!", "registerTitle": "Join GeoMaster",
-    "username": "Username", "password": "Password", "confirmPassword": "Confirm Password",
+    "username": "Display Name", "email": "Email", "password": "Password", "confirmPassword": "Confirm Password",
     "loginBtn": "Login", "registerBtn": "Create Account",
     "noAccount": "Don't have an account?", "hasAccount": "Already have an account?",
     "signUp": "Sign Up", "signIn": "Sign In", "guestPlay": "Play as Guest",
     "errors": {
-      "usernameRequired": "Username is required", "passwordRequired": "Password is required",
-      "passwordMismatch": "Passwords do not match", "usernameTaken": "Username already taken",
-      "invalidCredentials": "Invalid username or password"
+      "usernameRequired": "Display name is required", "emailRequired": "Email is required",
+      "passwordRequired": "Password is required", "passwordMismatch": "Passwords do not match",
+      "emailTaken": "Email already in use", "weakPassword": "Password must be at least 6 characters",
+      "invalidEmail": "Invalid email address", "invalidCredentials": "Invalid email or password",
+      "tooManyRequests": "Too many attempts. Please try again later.",
+      "genericError": "Something went wrong. Please try again."
     }
   },
   "common": {

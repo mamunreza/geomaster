@@ -8,7 +8,7 @@ export default function Auth() {
   const { register, login, loginAsGuest } = useAuth();
   const navigate = useNavigate();
   const [mode, setMode] = useState('login');
-  const [form, setForm] = useState({ username: '', password: '', confirmPassword: '' });
+  const [form, setForm] = useState({ displayName: '', email: '', password: '', confirmPassword: '' });
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
@@ -17,14 +17,25 @@ export default function Auth() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
-    if (!form.username.trim()) return setError(t('auth.errors.usernameRequired'));
+    if (!form.email.trim()) return setError(t('auth.errors.emailRequired'));
     if (!form.password) return setError(t('auth.errors.passwordRequired'));
-    if (mode === 'register' && form.password !== form.confirmPassword) return setError(t('auth.errors.passwordMismatch'));
+    if (mode === 'register') {
+      if (!form.displayName.trim()) return setError(t('auth.errors.usernameRequired'));
+      if (form.password !== form.confirmPassword) return setError(t('auth.errors.passwordMismatch'));
+    }
     setLoading(true);
-    await new Promise((r) => setTimeout(r, 300));
-    const result = mode === 'login' ? login(form.username, form.password) : register(form.username, form.password);
+    const result = mode === 'login'
+      ? await login(form.email, form.password)
+      : await register(form.displayName.trim(), form.email, form.password);
     setLoading(false);
     if (result.error) return setError(t(`auth.errors.${result.error}`));
+    navigate('/');
+  };
+
+  const handleGuest = async () => {
+    setLoading(true);
+    await loginAsGuest();
+    setLoading(false);
     navigate('/');
   };
 
@@ -38,9 +49,15 @@ export default function Auth() {
 
         <div className="card">
           <form onSubmit={handleSubmit}>
+            {mode === 'register' && (
+              <div className="form-group">
+                <label className="form-label">{t('auth.username')}</label>
+                <input className="input" type="text" value={form.displayName} onChange={(e) => update('displayName', e.target.value)} placeholder={t('auth.username')} autoComplete="nickname" />
+              </div>
+            )}
             <div className="form-group">
-              <label className="form-label">{t('auth.username')}</label>
-              <input className="input" type="text" value={form.username} onChange={(e) => update('username', e.target.value)} placeholder={t('auth.username')} autoComplete="username" />
+              <label className="form-label">{t('auth.email')}</label>
+              <input className="input" type="email" value={form.email} onChange={(e) => update('email', e.target.value)} placeholder="you@example.com" autoComplete="email" />
             </div>
             <div className="form-group">
               <label className="form-label">{t('auth.password')}</label>
@@ -56,12 +73,12 @@ export default function Auth() {
             <button type="submit" className="btn btn-primary" style={{ width: '100%', marginBottom: '0.75rem' }} disabled={loading}>
               {loading ? '...' : mode === 'login' ? t('auth.loginBtn') : t('auth.registerBtn')}
             </button>
-            <button type="button" className="btn btn-secondary" style={{ width: '100%', marginBottom: '1rem' }} onClick={() => { loginAsGuest(); navigate('/'); }}>
+            <button type="button" className="btn btn-secondary" style={{ width: '100%', marginBottom: '1rem' }} onClick={handleGuest} disabled={loading}>
               👤 {t('auth.guestPlay')}
             </button>
             <p style={{ textAlign: 'center', fontSize: '0.875rem', color: 'var(--text-muted)' }}>
               {mode === 'login' ? t('auth.noAccount') : t('auth.hasAccount')}{' '}
-              <button type="button" onClick={() => { setMode(mode === 'login' ? 'register' : 'login'); setError(''); }} style={{ background: 'none', border: 'none', color: 'var(--primary-light)', fontWeight: 600, cursor: 'pointer' }}>
+              <button type="button" onClick={() => { setMode(mode === 'login' ? 'register' : 'login'); setError(''); setForm({ displayName: '', email: '', password: '', confirmPassword: '' }); }} style={{ background: 'none', border: 'none', color: 'var(--primary-light)', fontWeight: 600, cursor: 'pointer' }}>
                 {mode === 'login' ? t('auth.signUp') : t('auth.signIn')}
               </button>
             </p>
