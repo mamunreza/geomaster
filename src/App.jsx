@@ -12,7 +12,6 @@ const Games = lazy(() => import('./pages/Games.jsx'));
 const FlagsQuiz = lazy(() => import('./pages/FlagsQuiz.jsx'));
 const CapitalsQuiz = lazy(() => import('./pages/CapitalsQuiz.jsx'));
 const MapQuiz = lazy(() => import('./pages/MapQuiz.jsx'));
-const Leaderboard = lazy(() => import('./pages/Leaderboard.jsx'));
 const Profile = lazy(() => import('./pages/Profile.jsx'));
 const Auth = lazy(() => import('./pages/Auth.jsx'));
 
@@ -51,7 +50,6 @@ export default function App() {
                   <Route path="/flags" element={<FlagsQuiz />} />
                   <Route path="/capitals" element={<CapitalsQuiz />} />
                   <Route path="/map" element={<MapQuiz />} />
-                  <Route path="/leaderboard" element={<Leaderboard />} />
                   <Route path="/profile" element={<Profile />} />
                   <Route path="/auth" element={<Auth />} />
                   <Route path="*" element={<div className="page" style={{ textAlign: 'center' }}><div style={{ fontSize: '4rem' }}>🗺️</div><h2>404 – Page Not Found</h2></div>} />

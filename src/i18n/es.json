@@ -2,7 +2,6 @@
   "nav": {
     "home": "Inicio",
     "games": "Juegos",
-    "leaderboard": "Clasificación",
     "profile": "Perfil",
     "login": "Iniciar sesión",
     "logout": "Cerrar sesión",
@@ -40,10 +39,20 @@
     },
     "settings": { "title": "Configuración", "questions": "Número de Preguntas", "timer": "Temporizador (segundos)" }
   },
-  "leaderboard": {
-    "title": "Clasificación", "rank": "Posición", "player": "Jugador",
-    "game": "Juego", "score": "Puntuación", "accuracy": "Precisión", "date": "Fecha",
-    "noScores": "Sin puntuaciones todavía. ¡Sé el primero!"
+  "countryInfo": {
+    "searchTitle": "Explora el Mundo",
+    "searchSubtitle": "Busca cualquier país para descubrir datos, demografía y más",
+    "searchPlaceholder": "Buscar un país…",
+    "basicInfo": "Información Básica",
+    "demographics": "Demografía",
+    "knownFor": "Conocido Por",
+    "capital": "Capital",
+    "region": "Región",
+    "currency": "Moneda",
+    "languages": "Idiomas",
+    "area": "Área",
+    "population": "Población",
+    "density": "Densidad"
   },
   "profile": {
     "title": "Mi Perfil", "gamesPlayed": "Juegos Jugados", "bestScore": "Mejor Puntuación",

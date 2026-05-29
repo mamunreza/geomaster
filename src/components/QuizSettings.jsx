@@ -19,7 +19,7 @@ export default function QuizSettings({ settings, onChange, onStart }) {
 
   return (
     <div className="card fade-in" style={{ maxWidth: '520px', margin: '0 auto' }}>
-      <h2 style={{ fontSize: '1.3rem', fontWeight: 700, marginBottom: '1.5rem', textAlign: 'center' }}>{t('quiz.settings.title')}</h2>
+      <h2 style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '1.1rem', textAlign: 'center' }}>{t('quiz.settings.title')}</h2>
 
       <div className="form-group">
         <label className="form-label">{t('quiz.difficulty')}</label>

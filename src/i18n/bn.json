@@ -2,7 +2,6 @@
   "nav": {
     "home": "হোম",
     "games": "গেমস",
-    "leaderboard": "লিডারবোর্ড",
     "profile": "প্রোফাইল",
     "login": "লগইন",
     "logout": "লগআউট",
@@ -40,13 +39,22 @@
     },
     "settings": { "title": "গেম সেটিংস", "questions": "প্রশ্নের সংখ্যা", "timer": "টাইমার (সেকেন্ড)" }
   },
-  "leaderboard": {
-    "title": "লিডারবোর্ড", "rank": "র‍্যাংক", "player": "খেলোয়াড়",
-    "game": "গেম", "score": "স্কোর", "accuracy": "নির্ভুলতা", "date": "তারিখ",
-    "noScores": "এখনও কোনো স্কোর নেই। প্রথম হন!"
+  "countryInfo": {
+    "searchTitle": "বিশ্ব অন্বেষণ করুন",
+    "searchSubtitle": "যেকোনো দেশ খুঁজুন — তথ্য, জনসংখ্যা ও আরও জানুন",
+    "searchPlaceholder": "একটি দেশ খুঁজুন…",
+    "basicInfo": "মূল তথ্য",
+    "demographics": "জনতাত্ত্বিক তথ্য",
+    "knownFor": "বিখ্যাত যে কারণে",
+    "capital": "রাজধানী",
+    "region": "অঞ্চল",
+    "currency": "মুদ্রা",
+    "languages": "ভাষা",
+    "area": "আয়তন",
+    "population": "জনসংখ্যা",
+    "density": "ঘনত্ব"
   },
-  "profile": {
-    "title": "আমার প্রোফাইল", "gamesPlayed": "খেলা গেম", "bestScore": "সেরা স্কোর",
+  "profile": { "title": "আমার প্রোফাইল", "gamesPlayed": "খেলা গেম", "bestScore": "সেরা স্কোর",
     "totalScore": "মোট স্কোর", "avgAccuracy": "গড় নির্ভুলতা",
     "recentGames": "সাম্প্রতিক গেমস", "noGames": "এখনও কোনো গেম খেলা হয়নি।",
     "editProfile": "প্রোফাইল সম্পাদনা", "username": "ব্যবহারকারীর নাম"

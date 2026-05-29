@@ -42,9 +42,9 @@ export default function Auth() {
   return (
     <div className="page" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: 'calc(100vh - 70px)' }}>
       <div style={{ width: '100%', maxWidth: '420px' }}>
-        <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
-          <div style={{ fontSize: '2.5rem', marginBottom: '0.5rem' }}>🌍</div>
-          <h1 style={{ fontSize: '1.5rem', fontWeight: 800 }}>{mode === 'login' ? t('auth.loginTitle') : t('auth.registerTitle')}</h1>
+        <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
+          <div style={{ fontSize: '1.9rem', marginBottom: '0.35rem' }}>🌍</div>
+          <h1 style={{ fontSize: '1.2rem', fontWeight: 800 }}>{mode === 'login' ? t('auth.loginTitle') : t('auth.registerTitle')}</h1>
         </div>
 
         <div className="card">
