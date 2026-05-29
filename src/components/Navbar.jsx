@@ -15,16 +15,15 @@ export default function Navbar() {
   const navLinks = [
     { to: '/', label: t('nav.home') },
     { to: '/games', label: t('nav.games') },
-    { to: '/leaderboard', label: t('nav.leaderboard') },
     ...(user ? [{ to: '/profile', label: t('nav.profile') }] : []),
   ];
 
   return (
-    <nav style={{ background: 'rgba(255,255,255,0.92)', backdropFilter: 'blur(12px)', borderBottom: '2px solid var(--border)', position: 'sticky', top: 0, zIndex: 100, height: '70px', display: 'flex', alignItems: 'center', boxShadow: '0 2px 16px rgba(168,85,247,0.1)' }}>
+    <nav style={{ background: 'rgba(255,255,255,0.92)', backdropFilter: 'blur(12px)', borderBottom: '2px solid var(--border)', position: 'sticky', top: 0, zIndex: 100, height: '56px', display: 'flex', alignItems: 'center', boxShadow: '0 2px 16px rgba(168,85,247,0.1)' }}>
       <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
         {/* Logo */}
-        <NavLink to="/" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontWeight: 800, fontSize: '1.25rem' }}>
-          <span style={{ fontSize: '1.6rem' }}>🌍</span>
+        <NavLink to="/" style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontWeight: 800, fontSize: '1.1rem' }}>
+          <span style={{ fontSize: '1.3rem' }}>🌍</span>
           <span style={{ background: 'linear-gradient(135deg, var(--primary-light), var(--secondary))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>GeoMaster</span>
         </NavLink>
 
@@ -58,7 +57,7 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {menuOpen && (
-        <div style={{ position: 'absolute', top: '70px', left: 0, right: 0, background: '#ffffff', borderBottom: '2px solid var(--border)', padding: '1rem', display: 'flex', flexDirection: 'column', gap: '0.5rem', zIndex: 99, boxShadow: '0 8px 24px rgba(168,85,247,0.15)' }}>
+        <div style={{ position: 'absolute', top: '56px', left: 0, right: 0, background: '#ffffff', borderBottom: '2px solid var(--border)', padding: '0.75rem', display: 'flex', flexDirection: 'column', gap: '0.4rem', zIndex: 99, boxShadow: '0 8px 24px rgba(168,85,247,0.15)' }}>
           {navLinks.map((link) => (
             <NavLink key={link.to} to={link.to} end={link.to === '/'} onClick={() => setMenuOpen(false)}
               style={({ isActive }) => ({ padding: '0.75rem 1rem', borderRadius: 'var(--radius-sm)', fontWeight: 700, color: isActive ? 'var(--primary-dark)' : 'var(--text)', background: isActive ? '#f3e8ff' : 'transparent' })}>

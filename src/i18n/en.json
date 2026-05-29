@@ -2,7 +2,6 @@
   "nav": {
     "home": "Home",
     "games": "Games",
-    "leaderboard": "Leaderboard",
     "profile": "Profile",
     "login": "Login",
     "logout": "Logout",
@@ -40,10 +39,20 @@
     },
     "settings": { "title": "Game Settings", "questions": "Number of Questions", "timer": "Timer (seconds)" }
   },
-  "leaderboard": {
-    "title": "Leaderboard", "rank": "Rank", "player": "Player",
-    "game": "Game", "score": "Score", "accuracy": "Accuracy", "date": "Date",
-    "noScores": "No scores yet. Be the first!"
+  "countryInfo": {
+    "searchTitle": "Explore the World",
+    "searchSubtitle": "Search any country to discover facts, demographics & more",
+    "searchPlaceholder": "Search for a country…",
+    "basicInfo": "Basic Information",
+    "demographics": "Demographics",
+    "knownFor": "Known For",
+    "capital": "Capital",
+    "region": "Region",
+    "currency": "Currency",
+    "languages": "Languages",
+    "area": "Area",
+    "population": "Population",
+    "density": "Density"
   },
   "profile": {
     "title": "My Profile", "gamesPlayed": "Games Played", "bestScore": "Best Score",

@@ -110,11 +110,6 @@ export function AuthProvider({ children }) {
     userData.stats.totalQuestions += scoreData.total;
     saveUserData(user.uid, userData);
     setUser((prev) => ({ ...prev, scores: userData.scores, stats: userData.stats }));
-
-    const lb = JSON.parse(localStorage.getItem('geomaster_leaderboard') || '[]');
-    lb.push({ username: user.displayName, ...scoreData, date: new Date().toLocaleDateString() });
-    lb.sort((a, b) => b.score - a.score);
-    localStorage.setItem('geomaster_leaderboard', JSON.stringify(lb.slice(0, 100)));
   }, [user]);
 
   const value = useMemo(

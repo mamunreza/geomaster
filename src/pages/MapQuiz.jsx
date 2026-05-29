@@ -108,9 +108,9 @@ export default function MapQuiz() {
     return (
       <div className="page">
         <div className="container">
-          <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
-            <div style={{ fontSize: '3rem', marginBottom: '0.5rem' }}>🗺️</div>
-            <h1 style={{ fontSize: '1.8rem', fontWeight: 800 }}>{t('games.mapQuiz.title')}</h1>
+          <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
+            <div style={{ fontSize: '2.25rem', marginBottom: '0.4rem' }}>🗺️</div>
+            <h1 style={{ fontSize: '1.4rem', fontWeight: 800 }}>{t('games.mapQuiz.title')}</h1>
             <p style={{ color: 'var(--text-muted)', marginTop: '0.4rem' }}>{t('games.mapQuiz.description')}</p>
           </div>
           <QuizSettings settings={settings} onChange={setSettings} onStart={startGame} />
@@ -145,11 +145,11 @@ export default function MapQuiz() {
 
         {/* Target */}
         {currentCountry && (
-          <div style={{ textAlign: 'center', marginBottom: '0.75rem', padding: '0.75rem 1rem', background: 'var(--bg-card)', borderRadius: 'var(--radius)', border: '1px solid var(--border)' }}>
-            <p style={{ color: 'var(--text-muted)', fontSize: '0.875rem' }}>{t('quiz.findCountry')}</p>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.75rem', marginTop: '0.4rem' }}>
-              <span style={{ fontSize: '2rem' }}>{currentCountry.flag}</span>
-              <span style={{ fontSize: '1.4rem', fontWeight: 800 }}>{currentCountry.name}</span>
+          <div style={{ textAlign: 'center', marginBottom: '0.6rem', padding: '0.55rem 0.75rem', background: 'var(--bg-card)', borderRadius: 'var(--radius)', border: '1px solid var(--border)' }}>
+            <p style={{ color: 'var(--text-muted)', fontSize: '0.8rem' }}>{t('quiz.findCountry')}</p>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.55rem', marginTop: '0.3rem' }}>
+              <span style={{ fontSize: '1.5rem' }}>{currentCountry.flag}</span>
+              <span style={{ fontSize: '1.1rem', fontWeight: 800 }}>{currentCountry.name}</span>
             </div>
           </div>
         )}
@@ -187,7 +187,7 @@ export default function MapQuiz() {
 
         {/* Feedback */}
         {gameState === STATES.ANSWER && (
-          <div style={{ marginTop: '0.75rem', padding: '0.75rem 1rem', borderRadius: 'var(--radius-sm)', background: lastResult?.correct ? 'rgba(16,185,129,0.15)' : 'rgba(239,68,68,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+          <div style={{ marginTop: '0.55rem', padding: '0.55rem 0.75rem', borderRadius: 'var(--radius-sm)', background: lastResult?.correct ? 'rgba(16,185,129,0.15)' : 'rgba(239,68,68,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
             <span style={{ color: lastResult?.correct ? 'var(--success)' : 'var(--danger)', fontWeight: 600 }}>
               {lastResult?.correct ? `✅ ${t('quiz.correct')}` : lastResult?.timedOut ? `⏰ Time's up! — ${currentCountry?.name}` : `❌ ${t('quiz.wrong')} — ${t('quiz.theAnswerIs')}: ${currentCountry?.name}`}
             </span>

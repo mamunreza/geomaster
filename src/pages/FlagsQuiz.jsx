@@ -19,9 +19,9 @@ export default function FlagsQuiz() {
     return (
       <div className="page">
         <div className="container">
-          <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
-            <div style={{ fontSize: '3rem', marginBottom: '0.5rem' }}>🏳️</div>
-            <h1 style={{ fontSize: '1.8rem', fontWeight: 800 }}>{t('games.flagsQuiz.title')}</h1>
+          <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
+            <div style={{ fontSize: '2.25rem', marginBottom: '0.4rem' }}>🏳️</div>
+            <h1 style={{ fontSize: '1.4rem', fontWeight: 800 }}>{t('games.flagsQuiz.title')}</h1>
             <p style={{ color: 'var(--text-muted)', marginTop: '0.4rem' }}>{t('games.flagsQuiz.description')}</p>
           </div>
           <QuizSettings settings={settings} onChange={setSettings} onStart={handleStart} />
@@ -47,32 +47,32 @@ export default function FlagsQuiz() {
     <div className="page">
       <div className="container" style={{ maxWidth: '640px' }}>
         {/* Header */}
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.25rem' }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.9rem' }}>
           <div style={{ fontWeight: 600, color: 'var(--text-muted)' }}>{t('quiz.question')} {quiz.currentIndex + 1} {t('quiz.of')} {quiz.questions.length}</div>
           <QuizTimer timeLeft={quiz.timeLeft} total={settings.timeLimit} />
           <div style={{ fontWeight: 700, color: 'var(--accent)' }}>⭐ {quiz.score}</div>
         </div>
 
         {/* Progress */}
-        <div className="progress-bar" style={{ marginBottom: '1.5rem' }}>
+        <div className="progress-bar" style={{ marginBottom: '1.1rem' }}>
           <div className="progress-fill" style={{ width: `${((quiz.currentIndex) / quiz.questions.length) * 100}%` }} />
         </div>
 
         {/* Question */}
-        <div className="card fade-in" style={{ textAlign: 'center', marginBottom: '1.25rem' }}>
-          <p style={{ color: 'var(--text-muted)', marginBottom: '1rem', fontSize: '0.95rem' }}>{t('quiz.whichFlag')}</p>
-          <div style={{ marginBottom: '0.5rem', display: 'flex', justifyContent: 'center' }}>
+        <div className="card fade-in" style={{ textAlign: 'center', marginBottom: '0.9rem' }}>
+          <p style={{ color: 'var(--text-muted)', marginBottom: '0.75rem', fontSize: '0.85rem' }}>{t('quiz.whichFlag')}</p>
+          <div style={{ marginBottom: '0.4rem', display: 'flex', justifyContent: 'center' }}>
             <img
               src={`https://flagcdn.com/w160/${q.correct.id}.png`}
               srcSet={`https://flagcdn.com/w320/${q.correct.id}.png 2x`}
               alt="flag"
-              style={{ width: '160px', height: 'auto', borderRadius: '4px', boxShadow: '0 2px 8px rgba(0,0,0,0.4)' }}
+              style={{ width: '120px', height: 'auto', borderRadius: '4px', boxShadow: '0 2px 8px rgba(0,0,0,0.4)' }}
             />
           </div>
         </div>
 
         {/* Options */}
-        <div className="grid-2" style={{ gap: '0.75rem' }}>
+        <div className="grid-2" style={{ gap: '0.55rem' }}>
           {q.options.map((opt) => {
             let bg = 'var(--bg-card)', border = 'var(--border)', color = 'var(--text)';
             if (quiz.state === QUIZ_STATES.ANSWER) {
@@ -81,7 +81,7 @@ export default function FlagsQuiz() {
             }
             return (
               <button key={opt.id} onClick={() => quiz.answer(opt.id)} disabled={quiz.state === QUIZ_STATES.ANSWER}
-                style={{ background: bg, border: `2px solid ${border}`, borderRadius: 'var(--radius)', padding: '0.9rem 1rem', color, fontWeight: 600, fontSize: '0.95rem', textAlign: 'left', transition: 'all 0.2s', cursor: quiz.state === QUIZ_STATES.ANSWER ? 'default' : 'pointer' }}
+                style={{ background: bg, border: `2px solid ${border}`, borderRadius: 'var(--radius)', padding: '0.65rem 0.75rem', color, fontWeight: 600, fontSize: '0.875rem', textAlign: 'left', transition: 'all 0.2s', cursor: quiz.state === QUIZ_STATES.ANSWER ? 'default' : 'pointer' }}
                 onMouseEnter={(e) => { if (quiz.state === QUIZ_STATES.PLAYING) e.currentTarget.style.borderColor = 'var(--primary)'; }}
                 onMouseLeave={(e) => { if (quiz.state === QUIZ_STATES.PLAYING) e.currentTarget.style.borderColor = 'var(--border)'; }}>
                 {t(`countries.${opt.id}`, opt.name)}
@@ -92,7 +92,7 @@ export default function FlagsQuiz() {
 
         {/* Feedback */}
         {quiz.state === QUIZ_STATES.ANSWER && (
-          <div style={{ marginTop: '1rem', padding: '0.75rem 1rem', borderRadius: 'var(--radius-sm)', background: quiz.selected === q.correct.id ? 'rgba(16,185,129,0.15)' : 'rgba(239,68,68,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+          <div style={{ marginTop: '0.75rem', padding: '0.55rem 0.75rem', borderRadius: 'var(--radius-sm)', background: quiz.selected === q.correct.id ? 'rgba(16,185,129,0.15)' : 'rgba(239,68,68,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
             <span style={{ color: quiz.selected === q.correct.id ? 'var(--success)' : 'var(--danger)', fontWeight: 600 }}>
               {quiz.selected === q.correct.id ? `✅ ${t('quiz.correct')}` : `❌ ${t('quiz.wrong')} — ${t('quiz.theAnswerIs')}: ${t(`countries.${q.correct.id}`, q.correct.name)}`}
             </span>

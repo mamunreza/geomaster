@@ -23,11 +23,11 @@ export default function ResultsScreen({ score, correct, total, accuracy, gameTyp
 
   return (
     <div className="card bounce-in" style={{ maxWidth: '520px', margin: '0 auto', textAlign: 'center' }}>
-      <div style={{ fontSize: '3rem', marginBottom: '0.5rem' }}>🎉</div>
-      <h2 style={{ fontSize: '1.6rem', fontWeight: 800, marginBottom: '0.25rem' }}>{t('quiz.results.title')}</h2>
-      <div style={{ fontSize: '1.1rem', color: grade.color, fontWeight: 600, marginBottom: '1.5rem' }}>{grade.label}</div>
+      <div style={{ fontSize: '2.25rem', marginBottom: '0.35rem' }}>🎉</div>
+      <h2 style={{ fontSize: '1.2rem', fontWeight: 800, marginBottom: '0.2rem' }}>{t('quiz.results.title')}</h2>
+      <div style={{ fontSize: '0.9rem', color: grade.color, fontWeight: 600, marginBottom: '1.1rem' }}>{grade.label}</div>
       <ScoreDisplay score={score} correct={correct} total={total} accuracy={accuracy} />
-      <div style={{ display: 'flex', gap: '0.75rem', marginTop: '1.5rem', flexWrap: 'wrap' }}>
+      <div style={{ display: 'flex', gap: '0.55rem', marginTop: '1.1rem', flexWrap: 'wrap' }}>
         <button className="btn btn-primary" style={{ flex: 1 }} onClick={onPlayAgain}>🔄 {t('quiz.playAgain')}</button>
         {!saved ? (
           <button className="btn btn-success" style={{ flex: 1 }} onClick={handleSave}>💾 {t('quiz.results.saveScore')}</button>
