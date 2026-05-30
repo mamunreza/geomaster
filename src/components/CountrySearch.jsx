@@ -389,19 +389,19 @@ function CountryInfoPanel({ country, t, lang }) {
   const facts = Array.isArray(details.known) ? details.known : (details.known[lang] ?? details.known.en);
 
   return (
-    <div className="fade-in" style={{ padding: '1.5rem 0 0' }}>
-      {/* Country header */}
-      <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
+    <div className="fade-in" style={{ padding: '1.25rem 0 0' }}>
+      {/* Country header — single row */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: '0.9rem', marginBottom: '1.25rem', padding: '0.6rem 1rem', background: 'rgba(255,255,255,0.6)', borderRadius: 14, backdropFilter: 'blur(8px)', boxShadow: '0 2px 12px rgba(168,85,247,0.12)' }}>
         <img
           src={`https://flagcdn.com/w80/${country.id}.png`}
           alt={country.name}
-          style={{ height: 52, borderRadius: 6, boxShadow: '0 2px 12px rgba(0,0,0,0.18)', marginBottom: '0.6rem', display: 'inline-block' }}
+          style={{ height: 36, borderRadius: 5, boxShadow: '0 2px 8px rgba(0,0,0,0.18)', flexShrink: 0 }}
           onError={e => { e.target.style.display = 'none'; }}
         />
-        <h2 style={{ fontSize: 'clamp(1.3rem, 3vw, 2rem)', fontWeight: 900, background: 'linear-gradient(135deg, #7c3aed, #a855f7, #38bdf8)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', marginBottom: '0.2rem' }}>
+        <h2 style={{ fontSize: 'clamp(1.1rem, 2.5vw, 1.5rem)', fontWeight: 900, background: 'linear-gradient(135deg, #7c3aed, #a855f7, #38bdf8)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', margin: 0, lineHeight: 1.2 }}>
           {translatedName}
         </h2>
-        <span style={{ background: '#f3e8ff', color: '#7c3aed', padding: '0.2rem 0.75rem', borderRadius: 20, fontSize: '0.78rem', fontWeight: 700 }}>
+        <span style={{ background: '#f3e8ff', color: '#7c3aed', padding: '0.2rem 0.7rem', borderRadius: 20, fontSize: '0.75rem', fontWeight: 700, flexShrink: 0 }}>
           {REGION_LABEL(country.region, t)}
         </span>
       </div>
@@ -445,9 +445,13 @@ export default function CountrySearch() {
   const [query, setQuery] = useState('');
   const [selected, setSelected] = useState(null);
   const [open, setOpen] = useState(false);
+  const [closing, setClosing] = useState(false);
   const [activeIdx, setActiveIdx] = useState(-1);
   const inputRef = useRef(null);
   const listRef = useRef(null);
+  const closeTimerRef = useRef(null);
+  const selectedRef = useRef(null);
+  selectedRef.current = selected;
 
   const filtered = useMemo(() => {
     if (!query.trim()) return [];
@@ -459,15 +463,39 @@ export default function CountrySearch() {
     }).slice(0, 8);
   }, [query, t]);
 
+  // Sync query text to new language when a country is already selected
   useEffect(() => {
-    setOpen(filtered.length > 0);
+    if (selectedRef.current) {
+      const c = selectedRef.current;
+      setQuery(t(`countries.${c.id}`, { defaultValue: c.name }));
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [i18n.language]);
+
+  useEffect(() => {
+    if (filtered.length > 0 && !selectedRef.current) {
+      setClosing(false);
+      setOpen(true);
+    } else if (filtered.length === 0) {
+      setOpen(false);
+      setClosing(false);
+    }
     setActiveIdx(-1);
   }, [filtered]);
+
+  function closeDropdown() {
+    setClosing(true);
+    clearTimeout(closeTimerRef.current);
+    closeTimerRef.current = setTimeout(() => {
+      setOpen(false);
+      setClosing(false);
+    }, 280);
+  }
 
   function selectCountry(c) {
     setSelected(c);
     setQuery(t(`countries.${c.id}`, { defaultValue: c.name }));
-    setOpen(false);
+    closeDropdown();
     inputRef.current?.blur();
   }
 
@@ -476,7 +504,7 @@ export default function CountrySearch() {
     if (e.key === 'ArrowDown') { e.preventDefault(); setActiveIdx(i => Math.min(i + 1, filtered.length - 1)); }
     if (e.key === 'ArrowUp')   { e.preventDefault(); setActiveIdx(i => Math.max(i - 1, 0)); }
     if (e.key === 'Enter' && activeIdx >= 0) { e.preventDefault(); selectCountry(filtered[activeIdx]); }
-    if (e.key === 'Escape') { setOpen(false); }
+    if (e.key === 'Escape') { closeDropdown(); }
   }
 
   function handleClear() {
@@ -566,6 +594,7 @@ export default function CountrySearch() {
                   padding: '0.4rem 0',
                   margin: 0,
                   listStyle: 'none',
+                  animation: closing ? 'dropdownFadeOut 0.28s ease forwards' : 'dropdownFadeIn 0.18s ease',
                 }}
               >
                 {filtered.map((c, i) => (
